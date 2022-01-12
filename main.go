@@ -1,21 +1,31 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
+
+type courseInfo struct {
+	Title string `json: "Title"`
+}
+
+var courses map[string]courseInfo
 
 func home(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to REST API!")
 }
 
 func allcources(w http.ResponseWriter, r *http.Request) {
+
 	kv := r.URL.Query()
 	for k, v := range kv {
 		fmt.Println(k, v)
 	}
+	json.NewEncoder(w).Encode(courses)
 }
 
 func course(w http.ResponseWriter, r *http.Request) {

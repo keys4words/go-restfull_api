@@ -107,6 +107,8 @@ func course(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	courses = make(map[string]courseInfo)
+
 	router := mux.NewRouter()
 	router.HandleFunc("/api/v1/", home)
 

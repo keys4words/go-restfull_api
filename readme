@@ -1,0 +1,3 @@
+pizza api
+localhost:8080/pizzas -> json with all pizzas
+localhost:8080/pizza/{id} -> json with this pizza ingredients if pizza is availabe or null

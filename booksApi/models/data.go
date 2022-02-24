@@ -1,6 +1,6 @@
 package models
 
-var db []Book
+var DB []Book
 
 type Book struct {
 	ID            int    `json:"id"`
@@ -8,6 +8,7 @@ type Book struct {
 	Author        Author `json:"author"`
 	YearPublished int    `json:"year_published"`
 }
+
 type Author struct {
 	Name     string `json:"name"`
 	LastName string `json:"last_name"`
@@ -25,5 +26,18 @@ func init() {
 			BornYear: 1892,
 		},
 	}
-	db = append(db, book1)
+	DB = append(DB, book1)
+}
+
+func FindBookById(id int) (Book, bool) {
+	var book Book
+	var found bool
+	for _, v := range DB {
+		if v.ID == id {
+			book = v
+			found = true
+			break
+		}
+	}
+	return book, found
 }

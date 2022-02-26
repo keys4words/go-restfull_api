@@ -1,10 +1,13 @@
 package api
 
 type API struct {
+	config *Config
 }
 
-func New() *API {
-	return &API{}
+func New(config *Config) *API {
+	return &API{
+		config: config,
+	}
 }
 
 func (api *API) Start() error {

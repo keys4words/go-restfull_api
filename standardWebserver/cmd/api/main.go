@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 
 	"github.com/BurntSushi/toml"
@@ -8,20 +9,22 @@ import (
 )
 
 var (
-	configPath string = "configs/api.toml"
+	configPath string
 )
 
 func init() {
-
+	flag.StringVar(&configPath, "path", "configs/api.toml", "path to config file in toml format")
 }
 
 func main() {
+	flag.Parse()
 	log.Println("It works")
 	config := api.NewConfig()
 	_, err := toml.DecodeFile(configPath, config)
 	if err != nil {
-		log.Println("cannot parse toml file, use default", err)
+		log.Println("cannot parse toml file, use default value ", err)
 	}
+
 	server := api.New(config)
 	if err := server.Start(); err != nil {
 		log.Fatal(err)

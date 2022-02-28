@@ -4,13 +4,15 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/keys4words/go-restfull_api/standardWebserver/storage"
 	"github.com/sirupsen/logrus"
 )
 
 type API struct {
-	config *Config
-	logger *logrus.Logger
-	router *mux.Router
+	config  *Config
+	logger  *logrus.Logger
+	router  *mux.Router
+	storage *storage.Storage
 }
 
 func New(config *Config) *API {
@@ -27,5 +29,8 @@ func (api *API) Start() error {
 	}
 	api.logger.Info("starting api server at port:", api.config.BindAddr)
 	api.configureRouterFields()
+	if err := api.configureStorageFields(); err != nil {
+		return err
+	}
 	return http.ListenAndServe(api.config.BindAddr, api.router)
 }

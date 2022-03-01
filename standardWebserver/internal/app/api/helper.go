@@ -7,6 +7,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var (
+	prefix string = "/api/v1/"
+)
+
 func (a *API) configureLoggerFields() error {
 	log_level, err := logrus.ParseLevel(a.config.LoggerLevel)
 	if err != nil {
@@ -17,9 +21,11 @@ func (a *API) configureLoggerFields() error {
 }
 
 func (a *API) configureRouterFields() {
-	a.router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hey! This is REST API..."))
-	})
+	a.router.HandleFunc(prefix+"/articles", a.GetAllArticles).Methods("GET")
+	a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
+	a.router.HandleFunc(prefix+"/articles/{id}", a.DeleteArticleById).Methods("Delete")
+	a.router.HandleFunc(prefix+"/articles", a.PostArticle).Methods("POST")
+	a.router.HandleFunc(prefix+"/user/register", a.PostUserRegister).Methods("POST")
 }
 
 func (a *API) configureStorageFields() error {

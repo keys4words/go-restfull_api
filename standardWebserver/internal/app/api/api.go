@@ -27,7 +27,7 @@ func (api *API) Start() error {
 	if err := api.configureLoggerFields(); err != nil {
 		return err
 	}
-	api.logger.Info("starting api server at port:", api.config.BindAddr)
+	api.logger.Info("starting api server at port", api.config.BindAddr)
 	api.configureRouterFields()
 	if err := api.configureStorageFields(); err != nil {
 		return err

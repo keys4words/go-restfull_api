@@ -2,6 +2,7 @@ package storage
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/keys4words/go-restfull_api/standardWebserver/internal/app/models"
 )
@@ -29,7 +30,7 @@ func (ur *UserRepository) FindByLogin(login string) (*models.User, bool, error) 
 		return nil, founded, err
 	}
 	var userFinded *models.User
-	fo _, u := range users {
+	for _, u := range users {
 		if u.Login == login {
 			userFinded = u
 			founded = true
@@ -39,7 +40,7 @@ func (ur *UserRepository) FindByLogin(login string) (*models.User, bool, error) 
 	return userFinded, founded, nil
 }
 
-func (ur *UserRepository) SelectAll() []*models.User, error) {
+func (ur *UserRepository) SelectAll() ([]*models.User, error) {
 	query := fmt.Sprintf("SELECT * FROM %s", tableUser)
 	rows, err := ur.storage.db.Query(query)
 	if err != nil {

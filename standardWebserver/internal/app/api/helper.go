@@ -1,14 +1,12 @@
 package api
 
 import (
-	"net/http"
-
 	"github.com/keys4words/go-restfull_api/standardWebserver/storage"
 	"github.com/sirupsen/logrus"
 )
 
 var (
-	prefix string = "/api/v1/"
+	prefix string = "/api/v1"
 )
 
 func (a *API) configureLoggerFields() error {

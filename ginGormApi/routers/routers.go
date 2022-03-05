@@ -1,8 +1,8 @@
 package routers
 
 import (
+	"ginGormApi/handlers"
 	"github.com/gin-gonic/gin"
-	"github.com/keys4words/go-restfull_api/ginGormApi/handlers"
 )
 
 func SetupRouter() *gin.Engine {

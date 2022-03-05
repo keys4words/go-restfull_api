@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"ginGormApi/helpers"
+	"ginGormApi/models"
 	"github.com/gin-gonic/gin"
-	"github.com/keys4words/go-restfull_api/ginGormApi/helpers"
-	"github.com/keys4words/go-restfull_api/ginGormApi/models"
 )
 
 func GetAllArticles(c *gin.Context) {

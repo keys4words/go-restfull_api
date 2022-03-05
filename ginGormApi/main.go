@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
+	"ginGormApi/models"
+	"ginGormApi/routers"
+	"ginGormApi/storage"
 	"github.com/jinzhu/gorm"
-	"github.com/keys4words/go-restfull_api/ginGormApi/models"
-	"github.com/keys4words/go-restfull_api/ginGormApi/routers"
-	"github.com/keys4words/go-restfull_api/ginGormApi/storage"
 	_ "github.com/lib/pq"
 )
 

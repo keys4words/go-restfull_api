@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/keys4words/go-restfull_api/ginGormApi/storage"
+	"ginGormApi/storage"
 	_ "github.com/lib/pq"
 )
 

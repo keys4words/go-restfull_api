@@ -31,7 +31,7 @@ func init() {
 		ID:      3,
 		Dimeter: 22,
 		Price:   450.04,
-		Title:   "4Cheese",
+		Title:   "Four cheeses",
 	}
 	db = append(db, pizza1, pizza2, pizza3)
 }
@@ -72,8 +72,8 @@ func GetPizzaById(writer http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		log.Println("client try use invalid id params", err)
-		msg := ErrorMessage{Message: "id must be int type"}
+		log.Println("request uses invalid id params:", err)
+		msg := ErrorMessage{Message: "id of pizza must be int type"}
 		writer.WriteHeader(400)
 		json.NewEncoder(writer).Encode(msg)
 		return
@@ -85,13 +85,13 @@ func GetPizzaById(writer http.ResponseWriter, request *http.Request) {
 		json.NewEncoder(writer).Encode(pizza)
 	} else {
 		writer.WriteHeader(404)
-		msg := ErrorMessage{Message: "pizza with this id doesn't exist"}
+		msg := ErrorMessage{Message: "pizza with this id doesn't exist in db"}
 		json.NewEncoder(writer).Encode(msg)
 	}
 }
 
 func main() {
-	log.Println("Trying to start REST Pizza API...")
+	log.Println("REST Pizza API started...")
 	router := mux.NewRouter()
 	router.HandleFunc("/pizzas", GetAllPizzas).Methods("GET")
 	router.HandleFunc("/pizza/{id}", GetPizzaById).Methods("GET")

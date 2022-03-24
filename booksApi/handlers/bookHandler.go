@@ -65,18 +65,27 @@ func UpdateBookById(writer http.ResponseWriter, request *http.Request) {
 	var newBook models.Book
 	if !ok {
 		writer.WriteHeader(404)
+		log.Println("book not found in db, id:", id)
 		msg := models.Message{Message: "book with this id doesn't exists"}
 		json.NewEncoder(writer).Encode(msg)
 		return
 	}
-	err := json.NewDecoder(request.Body).Decode(&newBook)
+	err = json.NewDecoder(request.Body).Decode(&newBook)
 	if err != nil {
 		msg := models.Message{Message: "json is invalid"}
 		writer.WriteHeader(400)
 		json.NewEncoder(writer).Encode(msg)
 		return
 	}
-
+	for k, v := range models.DB {
+		if v.ID == oldBook.ID {
+			models.DB[k] = newBook
+			models.DB[k].ID = oldBook.ID
+		}
+	}
+	msg := models.Message{Message: "book updated"}
+	writer.WriteHeader(200)
+	json.NewEncoder(writer).Encode(msg)
 }
 func DeleteBookById(writer http.ResponseWriter, request *http.Request) {
 	initHeaders(writer)
@@ -96,4 +105,12 @@ func DeleteBookById(writer http.ResponseWriter, request *http.Request) {
 		json.NewEncoder(writer).Encode(msg)
 		return
 	}
+	for k, v := range models.DB {
+		if v.ID == book.ID {
+			models.DB = append(models.DB[:k], models.DB[k+1:]...)
+			break
+		}
+	}
+	msg := models.Message{Message: "book has been successfully deleted"}
+	json.NewEncoder(writer).Encode(msg)
 }

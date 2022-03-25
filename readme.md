@@ -18,3 +18,7 @@
 - PUT    base/books/1 -> update existing book
 - DELETE base/books/1 -> delete existing book
 4. Collection of Tests in Thunder Client at booksApi.json
+
+# stadard web server for api
+1. use golang-standards/project-layout for project structuring
+2. use configs in toml or .env formats

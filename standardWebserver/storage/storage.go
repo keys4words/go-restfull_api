@@ -35,6 +35,7 @@ func (storage *Storage) Open() error {
 func (storage *Storage) Close() {
 	storage.db.Close()
 }
+
 func (s *Storage) User() *UserRepository {
 	if s.userRepository != nil {
 		return s.userRepository

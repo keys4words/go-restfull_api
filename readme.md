@@ -22,3 +22,4 @@
 # stadard web server for api
 1. use golang-standards/project-layout for project structuring
 2. use configs in toml or .env formats
+3. use golang-migrate for migrations -> migrate -path migrations -database "postgres://localhost:5432/restapi?sslmode=disable&user=postgres&password=postgres" up/down

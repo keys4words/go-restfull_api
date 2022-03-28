@@ -83,6 +83,7 @@ func (api *API) GetArticleById(writer http.ResponseWriter, req *http.Request) {
 	writer.WriteHeader(200)
 	json.NewEncoder(writer).Encode(article)
 }
+
 func (api *API) DeleteArticleById(writer http.ResponseWriter, req *http.Request) {
 	initHeaders(writer)
 	api.logger.Info("Delete article by id")
@@ -173,6 +174,7 @@ func (api *API) PostArticle(writer http.ResponseWriter, req *http.Request) {
 	writer.WriteHeader(201)
 	json.NewEncoder(writer).Encode(a)
 }
+
 func (api *API) PostUserRegister(writer http.ResponseWriter, req *http.Request) {
 	initHeaders(writer)
 	api.logger.Info("Post User Register")

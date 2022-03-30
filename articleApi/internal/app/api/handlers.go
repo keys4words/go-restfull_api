@@ -238,6 +238,7 @@ func (api *API) PostUserRegister(writer http.ResponseWriter, req *http.Request) 
 func (api *API) PostToAuth(writer http.ResponseWriter, req *http.Request) {
 	initHeaders(writer)
 	api.logger.Info("Post to auth api")
+
 	var user models.User
 	err := json.NewDecoder(req.Body).Decode(&user)
 	if err != nil {
@@ -290,6 +291,7 @@ func (api *API) PostToAuth(writer http.ResponseWriter, req *http.Request) {
 	claims["exp"] = time.Now().Add(time.Hour * 2).Unix()
 	claims["admin"] = true
 	claims["name"] = userInDB.Login
+
 	tokenString, err := token.SignedString(middleware.SecretKey)
 	if err != nil {
 		api.logger.Info("Cannot claims jwt-token")

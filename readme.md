@@ -11,7 +11,7 @@
 2. standard project structure
 3. use godotenv
 3. routes:
-- base: localhost:8080/api/v1/
+- base: localhost:8080/api/v1
 - GET    base/books -> json with all books
 - GET    base/books/1 -> json with book #1
 - POST   base/book/ -> add new book
@@ -19,13 +19,33 @@
 - DELETE base/books/1 -> delete existing book
 4. Collection of Tests in Thunder Client at booksApi.json
 
-# stadard web server for api
+# article API
 1. use golang-standards/project-layout for project structuring
 2. data in postgres DB
 3. use configs in toml or .env formats
 4. use golang-migrate for migrations -> migrate -path migrations -database "postgres://localhost:5432/restapi?sslmode=disable&user=postgres&password=postgres" up/down
-5. 
+5. add authentication by JWT for all operations
+6. routes:
+	a.router.HandleFunc(prefix+"/articles", a.GetAllArticles).Methods("GET")
+	// a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
+	a.router.Handle(prefix+"/articles/{id}", middleware.JwtMiddleware.Handler(
+		http.HandlerFunc(a.GetArticleById),
+	)).Methods("GET")
+	a.router.HandleFunc(prefix+"/articles/{id}", a.DeleteArticleById).Methods("Delete")
+	a.router.HandleFunc(prefix+"/articles", a.PostArticle).Methods("POST")
+	a.router.HandleFunc(prefix+"/user/register", a.PostUserRegister).Methods("POST")
+
+	a.router.HandleFunc(prefix+"/user/auth", a.PostToAuth).Methods("POST")
 
 # REST API for solving quadratic equations
 rest api to get number of roots of quadratic equation
-1. request a, b, c, d
+1. routes:
+- base: localhost:8080/api/v1
+- POST  base/grab -> set equition params in body
+{
+  "A": 10,
+  "B": 20,
+  "C": 30
+}
+- GET   base/solve -> get number of roots
+

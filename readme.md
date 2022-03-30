@@ -24,18 +24,16 @@
 2. data in postgres DB
 3. use configs in toml or .env formats
 4. use golang-migrate for migrations -> migrate -path migrations -database "postgres://localhost:5432/restapi?sslmode=disable&user=postgres&password=postgres" up/down
-5. add authentication by JWT for all operations
+5. add authentication by JWT for delete/post article
 6. routes:
-	a.router.HandleFunc(prefix+"/articles", a.GetAllArticles).Methods("GET")
-	// a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
-	a.router.Handle(prefix+"/articles/{id}", middleware.JwtMiddleware.Handler(
-		http.HandlerFunc(a.GetArticleById),
-	)).Methods("GET")
-	a.router.HandleFunc(prefix+"/articles/{id}", a.DeleteArticleById).Methods("Delete")
-	a.router.HandleFunc(prefix+"/articles", a.PostArticle).Methods("POST")
-	a.router.HandleFunc(prefix+"/user/register", a.PostUserRegister).Methods("POST")
+- base:   localhost:8080/api/v1
+- GET     base/articles -> json with all articles
+- GET     base/articles/1 -> json with article #1
+- DELETE  base/articles/1 -> delete article #1, must be authorized
+- POST    base/articles -> create new article
+- POST    base/user/register -> register new user
+- POST    base/user/auth ->
 
-	a.router.HandleFunc(prefix+"/user/auth", a.PostToAuth).Methods("POST")
 
 # REST API for solving quadratic equations
 rest api to get number of roots of quadratic equation

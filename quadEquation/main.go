@@ -13,13 +13,13 @@ import (
 )
 
 const (
-	API_PREFIX string = "api/v1"
+	API_PREFIX string = "/api/v1"
 )
 
 var (
 	port        string
-	grabPrefix  string = API_PREFIX + "/grab"  //api/v1/item/
-	solvePrefix string = API_PREFIX + "/solve" //api/v1/items/
+	grabPrefix  string = API_PREFIX + "/grab"
+	solvePrefix string = API_PREFIX + "/solve"
 )
 
 func init() {
@@ -31,7 +31,7 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Starting quatEq API on port: ", port)
+	fmt.Println("Starting quadEq API on port: ", port)
 	router := mux.NewRouter()
 	router.HandleFunc(grabPrefix, handlers.ReadData).Methods("POST")
 	router.HandleFunc(solvePrefix, handlers.SolveEquation).Methods("GET")

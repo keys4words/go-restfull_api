@@ -26,6 +26,7 @@
 4. use golang-migrate for migrations -> migrate -path migrations -database "postgres://localhost:5432/restapi?sslmode=disable&user=postgres&password=postgres" up/down
 5. add authentication by JWT for delete/post article
 6. add logs by Logrus
+7. Collection of tests articleApi
 7. routes:
 - base:   localhost:8080/api/v1
 - GET     base/articles -> json with all articles
@@ -48,3 +49,12 @@ rest api to get number of roots of quadratic equation ax*x + bx + c = 0
 }
 - GET   base/solve -> get number of roots
 
+# Test First Development API example
+factorial API
+1. how can I check that it works?
+2. define boundary conditions
+3. start with tests - main_test.go
+4. add local hash to reduce calculation
+5. routes:
+- base: localhost:8080
+- GET base/factorial?num=7 -> request for calc factorial of "7" -> get factorial answer in response

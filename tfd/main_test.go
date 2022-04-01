@@ -69,12 +69,14 @@ func TestHandleFactorial(t *testing.T) {
 	for _, test := range HttpCases {
 		t.Run(test.Name, func(t *testing.T) {
 			recorder := httptest.NewRecorder()
+
 			handlerData := fmt.Sprintf("/factorial?num=%d", test.Numeric)
 			request, err := http.NewRequest("GET", handlerData, nil)
 			if err != nil {
 				t.Error(err)
 			}
 			handler.ServeHTTP(recorder, request)
+
 			if string(recorder.Body.Bytes()) != string(test.Expected) {
 				t.Errorf("test %s failed: input %v, result %v, expected %v",
 					test.Name,

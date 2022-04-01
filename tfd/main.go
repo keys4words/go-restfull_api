@@ -42,5 +42,6 @@ func HandlerFactorial(writer http.ResponseWriter, req *http.Request) {
 
 func main() {
 	http.HandleFunc("/factorial", HandlerFactorial)
+	log.Println("TFD factorial api works...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

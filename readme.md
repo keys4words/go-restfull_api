@@ -25,18 +25,19 @@
 3. use configs in toml or .env formats
 4. use golang-migrate for migrations -> migrate -path migrations -database "postgres://localhost:5432/restapi?sslmode=disable&user=postgres&password=postgres" up/down
 5. add authentication by JWT for delete/post article
-6. routes:
+6. add logs by Logrus
+7. routes:
 - base:   localhost:8080/api/v1
 - GET     base/articles -> json with all articles
 - GET     base/articles/1 -> json with article #1
 - DELETE  base/articles/1 -> delete article #1, must be authorized
-- POST    base/articles -> create new article
+- POST    base/articles -> create new article, must be authorized
 - POST    base/user/register -> register new user
-- POST    base/user/auth ->
+- POST    base/user/auth -> authorization existing user
 
 
 # REST API for solving quadratic equations
-rest api to get number of roots of quadratic equation
+rest api to get number of roots of quadratic equation ax*x + bx + c = 0
 1. routes:
 - base: localhost:8080/api/v1
 - POST  base/grab -> set equition params in body

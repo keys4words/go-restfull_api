@@ -23,14 +23,12 @@ func (a *API) configureLoggerFields() error {
 
 func (a *API) configureRouterFields() {
 	a.router.HandleFunc(prefix+"/articles", a.GetAllArticles).Methods("GET")
-	// a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
-	a.router.Handle(prefix+"/articles/{id}", middleware.JwtMiddleware.Handler(
-		http.HandlerFunc(a.GetArticleById),
-	)).Methods("GET")
-	a.router.HandleFunc(prefix+"/articles/{id}", a.DeleteArticleById).Methods("Delete")
-	a.router.HandleFunc(prefix+"/articles", a.PostArticle).Methods("POST")
-	a.router.HandleFunc(prefix+"/user/register", a.PostUserRegister).Methods("POST")
+	a.router.HandleFunc(prefix+"/articles/{id}", a.GetArticleById).Methods("GET")
 
+	a.router.Handle(prefix+"/articles/{id}", middleware.JwtMiddleware.Handler(http.HandlerFunc(a.DeleteArticleById))).Methods("DELETE")
+	a.router.Handle(prefix+"/articles", middleware.JwtMiddleware.Handler(http.HandlerFunc(a.PostArticle))).Methods("POST")
+
+	a.router.HandleFunc(prefix+"/user/register", a.PostUserRegister).Methods("POST")
 	a.router.HandleFunc(prefix+"/user/auth", a.PostToAuth).Methods("POST")
 }
 

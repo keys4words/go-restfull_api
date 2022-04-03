@@ -60,3 +60,11 @@ factorial API
 - GET base/factorial?num=7 -> request for calc factorial of "7" -> get factorial answer in response
 
 # Gin & GORM API example
+1. postgres db in docker container
+2. routes:
+- base: localhost:8080/api/v1
+- GET     base/articles     -> get all articles
+- POST    base/article      -> post new article
+- GET     base/article/:id  -> get article by Id
+- PUT     base/article/:id  -> update article by Id
+- DELETE  base/article/:id  -> delete article by Id

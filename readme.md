@@ -70,3 +70,6 @@ factorial API
 - DELETE  base/article/:id  -> delete article by Id
 
 # GarageApi
+1. postgres db in docker container
+2. routes
+3. linterns via .golangci.yaml

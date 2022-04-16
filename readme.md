@@ -60,3 +60,6 @@ factorial API
 - GET base/factorial?num=7 -> request for calc factorial of "7" -> get factorial answer in response
 
 # Gin & GORM API example
+
+
+# GarageApi

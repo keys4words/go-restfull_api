@@ -1,0 +1,32 @@
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters:
+  enable-all: true
+  disable:
+    - stylecheck
+    - golint
+    - revive
+    - lll
+    - whitespace
+    - wsl
+    - gci
+    - errorlint
+    - varnamelen
+    - goerr113
+    - ifshort
+    - errchkjson
+    - gofmt
+    - gosimple
+    - tagliatelle
+    - gofumpt
+    - goimports
+    - gomnd
+    - nlreturn
+    - wrapcheck
+  fast: false
+
+issues:
+  exclude-use-default: false

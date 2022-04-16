@@ -57,7 +57,7 @@ func (storage *UsersStorage) GetUserById(id int64) models.User {
 func (storage *UsersStorage) CreateUser(user models.User) error {
 	query := "INSERT INTO users(name, rank) VALUES ($1, $2)"
 
-	_, err := storage.databasePool.Exec(context.Background(), query, user.Name, user.Rank) //транзакция не нужна, у нас только один запрос
+	_, err := storage.databasePool.Exec(context.Background(), query, user.Name, user.Rank)
 
 	if err != nil {
 		log.Errorln(err)

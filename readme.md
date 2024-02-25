@@ -74,4 +74,4 @@ factorial API
 2. routes
 3. linterns via .golangci.yaml
 
-[Some test link] (https://github.com/keys4words/dockerSandbox/blob/main/.gitignore)
+[Some test link](https://github.com/keys4words/dockerSandbox/blob/main/.gitignore)
